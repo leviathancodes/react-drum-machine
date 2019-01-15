@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 class DrumPads extends React.Component {
     constructor(props) {
@@ -114,7 +114,8 @@ class DrumPads extends React.Component {
                 <div 
                 className="drum-pad pads"
                 onClick={this.props.click}
-                id={this.state[this.props.bank][i].id}>
+                id={this.state[this.props.bank][i].id}
+                key={this.state[this.props.bank][i].id}>
                 <audio className="clip" src={this.state[this.props.bank][i].audio}
                 id={e}/>
                 {e}
