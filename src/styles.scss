@@ -45,12 +45,17 @@ $black: #000000;
 body {
   background: linear-gradient($background, $white);
   background-repeat: no-repeat;
+  position: relative;
   height: 100vh;
   width: 100vw;
 }
 // "Drum Machine" Component
 .container {
   @include push--auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border: 5px solid $secondaryblue;
   border-radius: 3px;
   display: grid;
@@ -115,7 +120,7 @@ body {
         background-color: white;
         border: 3.5px solid $secondaryblue;
         border-radius: 3px;
-        webkit-user-select: none;
+        user-select: none;
         transition: all 0.2s;
       }
       .keystroke {
