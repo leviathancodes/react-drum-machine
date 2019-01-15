@@ -33,6 +33,8 @@ class App extends Component {
         if (e.key.toUpperCase() === key) {
           this.setState({display: document.getElementById(key).parentElement.id})
           this.playAudio(document.getElementById(key));
+          document.getElementById(key).parentElement.classList.add('keystroke');
+          setTimeout(function () { document.getElementById(key).parentElement.classList.remove('keystroke')}, 180)   
         }
       });    
     }

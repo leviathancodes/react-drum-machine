@@ -14,7 +14,6 @@ $black: #000000;
     right: auto;
   }
 }
-
 @mixin buttons {
   display: inline-block;
   width: 1em;
@@ -24,7 +23,6 @@ $black: #000000;
   border-radius: 50%;
   margin: 10px;
 }
-
 @mixin vertical-align {
   position: relative;
   top: 50%;
@@ -33,46 +31,14 @@ $black: #000000;
   transform: translateY(-50%);
 }
 
-// @keyframes
-
-@keyframes thumb-hover {
-  100% {
-    background: $secondaryblue;
-  }
-}
-
-@keyframes pad-hover {
-  100% {
-
-    background-color: $black;
-    color: $white;
-  }
-}
-
-@keyframes keyHit {
-  0% {
-    transform: translate(0px);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
-
-  100% {
-    transform: translate(0px);
-  }
-}
-
 @font-face {
   font-family: "Futura";
   src: url(https://cdn.glitch.com/30b6b0f8-effd-4bb0-be7b-31f6fa27545f%2Ffutura%20book%20font.ttf?1547089013291);
 }
 
-
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   font-family: "Futura";
 }
 
@@ -81,46 +47,36 @@ body {
   background-repeat: no-repeat;
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
-
 // "Drum Machine" Component
 .container {
-
   @include push--auto;
   border: 5px solid $secondaryblue;
   border-radius: 3px;
   display: grid;
   grid-template-rows: 15% 85%;
   height: 500px;
-  box-shadow: 10px 15px 10px grey;
+  box-shadow: 10px 15px 20px darkgrey;
   width: 70%;
-
 
   #baseRow-1 {
     background-color: white;
-
+    position: relative;
     .title {
       margin: 0;
       text-align: center;
       @include vertical-align;
+      font-weight: 400;
     }
   }
-
   #baseRow-2 {
     @media screen and (max-width: 700px) {
-      grid-template-rows: 60% auto;
+      grid-template-rows: 60% 40%;
       grid-template-columns: none;
     }
-
     background-color: $primaryblue;
     display: grid;
-
-    grid-template-columns: 60% auto;
-
+    grid-template-columns: 60% 40%;
     .innerColumn-1 {
       display: grid;
       grid-template-columns: repeat(3, 75px);
@@ -128,26 +84,23 @@ body {
       margin: 45px;
       grid-gap: 20px;
 
-      @media (max-width: 750px) {
+      @media screen and (max-width: 750px) {
         grid-gap: 15px;
         grid-template-columns: repeat(3, 67px);
         grid-template-rows: repeat(3, 67px);
       }
-
       @media screen and (max-width: 700px) {
         @include push--auto;
         grid-template-rows: repeat(3, 60px);
         grid-template-columns: repeat(3, 75px);
         grid-gap: 15px;
       }
-
       @media screen and (max-width: 400px) {
         @include push--auto;
         grid-template-rows: repeat(3, 50px);
         grid-template-columns: repeat(3, 60px);
         grid-gap: 15px;
       }
-
       @media screen and (max-width: 300px) {
         @include push--auto;
         grid-template-rows: repeat(3, 45px);
@@ -162,32 +115,43 @@ body {
         background-color: white;
         border: 3.5px solid $secondaryblue;
         border-radius: 3px;
-        -webkit-user-select: none;
+        webkit-user-select: none;
+        transition: all 0.2s;
       }
-
+      .keystroke {
+        transform: translateY(-10px);
+        animation: keyHit 0.2s;
+      }
       .pads:hover {
         cursor: pointer;
         animation: pad-hover 300ms forwards;
+        transform: translateY(-3px);
+        background-color: $black;
+        color: $white;
       }
-
-      @keyframes pad-hover {
+      .pads:active {
+        transform: translateY(-10px);
+      }
+      @keyframes keyHit {
+        0% {
+          transform: translate(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
         100% {
-
-          background-color: $black;
-          color: $white;
+          transform: translate(0px);
         }
       }
     }
-
     .innerColumn-2 {
       display: grid;
-      grid-template-rows: 53% 33% auto;
+      grid-template-rows: 53% 33% 14%;
       background-color: $primaryblue;
 
       #column-row-1 {
         background-color: $primaryblue;
       }
-
       #column-row-2 {
         background-color: $primaryblue;
       }
@@ -215,6 +179,7 @@ body {
     .display-text {
       text-align: center;
       @include vertical-align;
+      font-weight: 400;
     }
   }
 }
@@ -229,15 +194,12 @@ body {
 
   .button-1 {
     @include buttons;
-
     &:hover {
       cursor: pointer;
     }
   }
-
   .button-2 {
     @include buttons;
-
     &:hover {
       cursor: pointer;
     }
@@ -247,20 +209,15 @@ body {
 // "Volume" Component
 .volume-div {
   text-align: center;
-
   .volume {
     appearance: none;
     -webkit-appearance: none;
     width: 75%;
-    height: 10%;
+    height: 10px;
     border-radius: 25px;
     border: 3px solid $secondaryblue;
     outline: none;
-
-
-
   }
-
   .volume::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -269,13 +226,11 @@ body {
     height: 20px;
     background: $white;
     border: 3px solid $secondaryblue;
+    transition: all 0.4s;
     border-radius: 100%;
-
     &:hover {
       cursor: grab;
-      animation-name: thumb-hover;
+      background-color: $secondaryblue;
     }
   }
-
-
 }
